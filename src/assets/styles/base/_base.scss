@@ -8,6 +8,11 @@ html {
   scroll-behavior: smooth;
 }
 
+body {
+  font-family: var(--body-font);
+  font-size: var(--normal-font-size);
+}
+
 ul {
   list-style: none;
 }
