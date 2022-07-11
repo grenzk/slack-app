@@ -61,3 +61,37 @@
   width: 35%;
   height: auto;
 }
+
+.svg-content-too {
+  width: 500px;
+  height: auto;
+}
+
+.secondary-content {
+  padding: 5rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 20%;
+}
+
+.first-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  row-gap: 3rem;
+  background-color: var(--first-color);
+  padding: 2rem;
+  border-radius: 1rem;
+}
+
+.desktop {
+  padding-bottom: 5rem;
+}
+
+.download-text {
+  color: var(--not-quite-black);
+  font-size: var(--h2-font-size);
+  font-weight: var(--font-semi-bold);
+}
