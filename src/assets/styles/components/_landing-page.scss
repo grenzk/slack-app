@@ -8,7 +8,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 55%;
+  width: 60%;
   column-gap: 2rem;
   margin: 1rem 0;
 }
@@ -23,4 +23,41 @@
   align-items: center;
   column-gap: 0.3rem;
   font-size: var(--h3-font-size);
+}
+
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5rem 0;
+  background-color: var(--fifth-color);
+}
+
+.col-1 {
+  width: 25%;
+}
+
+.hero-text {
+  font-size: var(--biggest-font-size);
+  font-weight: var(--font-bold);
+}
+
+.secondary-text {
+  font-size: var(--h3-font-size);
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.download-btn {
+  margin-top: 1rem;
+  padding: 0 5rem;
+}
+
+.download-icon {
+  margin-right: 0.5rem;
+}
+
+.svg-content {
+  width: 35%;
+  height: auto;
 }

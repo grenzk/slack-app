@@ -13,6 +13,13 @@ body {
   font-size: var(--normal-font-size);
 }
 
+h1,
+h2,
+h3,
+p {
+  color: var(--first-color);
+}
+
 ul {
   list-style: none;
 }
