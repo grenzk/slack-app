@@ -1,0 +1,26 @@
+.header {
+  display: flex;
+  justify-content: center;
+  background-color: var(--fifth-color);
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 55%;
+  column-gap: 2rem;
+  margin: 1rem 0;
+}
+
+.nav-list {
+  display: flex;
+  column-gap: 2.5rem;
+}
+
+.nav-logo {
+  display: inline-flex;
+  align-items: center;
+  column-gap: 0.3rem;
+  font-size: var(--h3-font-size);
+}
