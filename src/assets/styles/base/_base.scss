@@ -4,6 +4,11 @@
   margin: 0;
 }
 
+html,
+body {
+  height: 100vh;
+}
+
 html {
   scroll-behavior: smooth;
 }

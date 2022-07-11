@@ -68,7 +68,7 @@
 }
 
 .secondary-content {
-  padding: 5rem 0;
+  padding: 15rem 0;
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -94,4 +94,13 @@
   color: var(--not-quite-black);
   font-size: var(--h2-font-size);
   font-weight: var(--font-semi-bold);
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+  align-items: center;
+  column-gap: 0.5rem;
+  background-color: var(--fifth-color);
 }
