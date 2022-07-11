@@ -1,10 +1,10 @@
 import React from 'react'
-import Navbar from '../components/LandingPage/Navbar'
+import Header from '../components/LandingPage/Header'
 
 const LandingPage = () => {
   return (
     <div>
-      <Navbar />
+      <Header />
     </div>
   )
 }

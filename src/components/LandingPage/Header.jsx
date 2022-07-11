@@ -2,7 +2,7 @@ import React from 'react'
 import * as FontAwesome from 'react-icons/fa'
 import { Button } from '@mantine/core'
 
-const Navbar = () => {
+const Header = () => {
   return (
     <div>
       <header className="header">
@@ -44,4 +44,4 @@ const Navbar = () => {
   )
 }
 
-export default Navbar
+export default Header
