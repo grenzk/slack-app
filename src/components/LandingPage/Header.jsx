@@ -1,8 +1,15 @@
 import React from 'react'
 import * as FontAwesome from 'react-icons/fa'
+import { useNavigate } from 'react-router-dom'
 import { Button } from '@mantine/core'
 
 const Header = () => {
+  let navigate = useNavigate()
+
+  const routeChange = () => {
+    navigate('LoginPage')
+  }
+
   return (
     <div>
       <header className="header">
@@ -37,7 +44,9 @@ const Header = () => {
             </ul>
           </div>
 
-          <Button radius="xl">Login</Button>
+          <Button radius="xl" onClick={routeChange}>
+            Login
+          </Button>
         </nav>
       </header>
     </div>
