@@ -1,6 +1,13 @@
 import React, { useState } from 'react'
-import { createStyles, Navbar, Group, Code } from '@mantine/core'
-import { Hash, SwitchHorizontal, Logout } from 'tabler-icons-react'
+import {
+  createStyles,
+  Navbar,
+  Header,
+  Autocomplete,
+  Group,
+  Code,
+} from '@mantine/core'
+import { Hash, SwitchHorizontal, Logout, Search } from 'tabler-icons-react'
 
 const useStyles = createStyles((theme, _params, getRef) => {
   const icon = getRef('icon')
@@ -18,6 +25,11 @@ const useStyles = createStyles((theme, _params, getRef) => {
     header: {
       paddingBottom: theme.spacing.md,
       marginBottom: theme.spacing.md * 1.5,
+      borderBottom: `1px solid ${theme.colors[theme.primaryColor][7]}`,
+    },
+
+    topHeader: {
+      backgroundColor: theme.colors[theme.primaryColor][6],
       borderBottom: `1px solid ${theme.colors[theme.primaryColor][7]}`,
     },
 
@@ -85,35 +97,61 @@ const MainPage = () => {
   ))
 
   return (
-    <Navbar height={700} width={{ sm: 300 }} p="md" className={classes.navbar}>
-      <Navbar.Section grow>
-        <Group className={classes.header} position="apart">
-          <h2>Avion School</h2>
-          <Code className={classes.version}>v3.1.2</Code>
+    <div>
+      <Header height={56} p="xs" className={classes.topHeader}>
+        <Group position="center">
+          <Autocomplete
+            radius="xl"
+            className={classes.search}
+            placeholder="Search"
+            icon={<Search size={16} />}
+            data={[
+              'React',
+              'Angular',
+              'Vue',
+              'Next.js',
+              'Riot.js',
+              'Svelte',
+              'Blitz.js',
+            ]}
+          />
         </Group>
-        {links}
-      </Navbar.Section>
+      </Header>
+      <Navbar
+        height={700}
+        width={{ sm: 300 }}
+        p="md"
+        className={classes.navbar}
+      >
+        <Navbar.Section grow>
+          <Group className={classes.header} position="apart">
+            <h2>Avion School</h2>
+            <Code className={classes.version}>v3.1.2</Code>
+          </Group>
+          {links}
+        </Navbar.Section>
 
-      <Navbar.Section className={classes.footer}>
-        <a
-          href="#"
-          className={classes.link}
-          onClick={event => event.preventDefault()}
-        >
-          <SwitchHorizontal className={classes.linkIcon} />
-          <span>Change account</span>
-        </a>
+        <Navbar.Section className={classes.footer}>
+          <a
+            href="#"
+            className={classes.link}
+            onClick={event => event.preventDefault()}
+          >
+            <SwitchHorizontal className={classes.linkIcon} />
+            <span>Change account</span>
+          </a>
 
-        <a
-          href="#"
-          className={classes.link}
-          onClick={event => event.preventDefault()}
-        >
-          <Logout className={classes.linkIcon} />
-          <span>Logout</span>
-        </a>
-      </Navbar.Section>
-    </Navbar>
+          <a
+            href="#"
+            className={classes.link}
+            onClick={event => event.preventDefault()}
+          >
+            <Logout className={classes.linkIcon} />
+            <span>Logout</span>
+          </a>
+        </Navbar.Section>
+      </Navbar>
+    </div>
   )
 }
 
