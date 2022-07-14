@@ -9,6 +9,8 @@ import {
 } from '@mantine/core'
 import { Hash, SwitchHorizontal, Logout, Send } from 'tabler-icons-react'
 
+import ChatBox from '../components/MainPage/ChatBox'
+
 const useStyles = createStyles((theme, _params, getRef) => {
   const icon = getRef('icon')
   return {
@@ -130,6 +132,7 @@ const MainPage = () => {
           </a>
         </Navbar.Section>
       </Navbar>
+      <ChatBox />
       <TextInput
         size="md"
         className="message-input"
