@@ -3,11 +3,11 @@ import {
   createStyles,
   Navbar,
   Header,
-  Autocomplete,
   Group,
   Code,
+  TextInput,
 } from '@mantine/core'
-import { Hash, SwitchHorizontal, Logout, Search } from 'tabler-icons-react'
+import { Hash, SwitchHorizontal, Logout, Send } from 'tabler-icons-react'
 
 const useStyles = createStyles((theme, _params, getRef) => {
   const icon = getRef('icon')
@@ -101,12 +101,7 @@ const MainPage = () => {
       <Header height={56} p="xs" className={classes.topHeader}>
         <Group position="center"></Group>
       </Header>
-      <Navbar
-        height={924}
-        width={{ sm: 300 }}
-        p="md"
-        className={classes.navbar}
-      >
+      <Navbar width={{ sm: 300 }} p="md" className={classes.navbar}>
         <Navbar.Section grow>
           <Group className={classes.header} position="apart">
             <h2>Avion School</h2>
@@ -135,6 +130,13 @@ const MainPage = () => {
           </a>
         </Navbar.Section>
       </Navbar>
+      <TextInput
+        size="md"
+        className="message-input"
+        placeholder="Message"
+        icon={<Send size={16} />}
+        required
+      />
     </div>
   )
 }
