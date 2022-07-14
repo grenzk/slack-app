@@ -99,26 +99,10 @@ const MainPage = () => {
   return (
     <div>
       <Header height={56} p="xs" className={classes.topHeader}>
-        <Group position="center">
-          <Autocomplete
-            radius="xl"
-            className={classes.search}
-            placeholder="Search"
-            icon={<Search size={16} />}
-            data={[
-              'React',
-              'Angular',
-              'Vue',
-              'Next.js',
-              'Riot.js',
-              'Svelte',
-              'Blitz.js',
-            ]}
-          />
-        </Group>
+        <Group position="center"></Group>
       </Header>
       <Navbar
-        height={700}
+        height={924}
         width={{ sm: 300 }}
         p="md"
         className={classes.navbar}
