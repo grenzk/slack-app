@@ -1,7 +1,6 @@
 import React from 'react'
 import { Button } from '@mantine/core'
 import mySvg from '../../assets/img/women-web-developer-with-laptop.svg'
-import * as FontAwesome from 'react-icons/fa'
 
 const Content = () => {
   return (
@@ -13,9 +12,8 @@ const Content = () => {
             Transform the way you work with one place for everyone and
             everything you need to get stuff done.
           </p>
-          <Button className="download-btn left" size="xl" radius="xl">
-            <FontAwesome.FaDownload className="download-icon" />
-            Download
+          <Button className="sign-up-btn left" size="xl" radius="xl">
+            Sign up
           </Button>
         </div>
         <img src={mySvg} alt="SVG" className="svg-content" />
