@@ -1,4 +1,5 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import loginBg from '../assets/img/website-designing.svg'
 import loginBgTwo from '../assets/img/collaborate.svg'
 import loginBgThree from '../assets/img/background-spot.svg'
@@ -17,10 +18,17 @@ const LoginPage = () => {
       email: value => (/^\S+@\S+$/.test(value) ? null : 'Invalid email'),
     },
   })
+
+  let navigate = useNavigate()
+
+  const handleSubmit = () => {
+    navigate('/MainPage')
+  }
+
   return (
     <div>
       <Box className="login-form-container" mx="auto">
-        <form onSubmit={form.onSubmit(values => console.log(values))}>
+        <form onSubmit={handleSubmit}>
           <TextInput
             required
             label="Email"

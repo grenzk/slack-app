@@ -7,7 +7,7 @@ const Header = () => {
   let navigate = useNavigate()
 
   const routeChange = () => {
-    navigate('LoginPage')
+    navigate('/LoginPage')
   }
 
   return (
