@@ -1,8 +1,15 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import { Button } from '@mantine/core'
 import mySvg from '../../assets/img/women-web-developer-with-laptop.svg'
 
 const Content = () => {
+  let navigate = useNavigate()
+
+  const routeChange = () => {
+    navigate('/SignUpPage')
+  }
+
   return (
     <div>
       <main className="main">
@@ -12,7 +19,12 @@ const Content = () => {
             Transform the way you work with one place for everyone and
             everything you need to get stuff done.
           </p>
-          <Button className="sign-up-btn left" size="xl" radius="xl">
+          <Button
+            className="sign-up-btn left"
+            size="xl"
+            radius="xl"
+            onClick={routeChange}
+          >
             Sign up
           </Button>
         </div>
