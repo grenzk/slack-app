@@ -1,0 +1,63 @@
+import React from 'react'
+import { useNavigate } from 'react-router-dom'
+import { TextInput, PasswordInput, Button, Group, Box } from '@mantine/core'
+import { useForm } from '@mantine/form'
+
+const SignUpForm = () => {
+  const form = useForm({
+    initialValues: {
+      email: 'johnsmith@example.com',
+      password: 'foo',
+      confirmPassword: 'foe',
+    },
+
+    validate: {
+      email: value => (/^\S+@\S+$/.test(value) ? null : 'Invalid email'),
+      confirmPassword: (value, values) =>
+        value !== values.password ? 'Passwords did not match' : null,
+    },
+  })
+
+  let navigate = useNavigate()
+
+  const handleSubmit = () => {
+    navigate('/LoginPage')
+  }
+
+  return (
+    <div>
+      <Box className="login-form-container" mx="auto">
+        <form onSubmit={handleSubmit}>
+          <TextInput
+            required
+            label="Email"
+            placeholder="your@email.com"
+            {...form.getInputProps('email')}
+          />
+
+          <PasswordInput
+            required
+            label="Password"
+            placeholder="Password"
+            {...form.getInputProps('password')}
+          />
+
+          <PasswordInput
+            mt="sm"
+            label="Confirm password"
+            placeholder="Confirm password"
+            {...form.getInputProps('confirmPassword')}
+          />
+
+          <Group position="center" mt="md">
+            <Button type="submit" fullWidth>
+              Login
+            </Button>
+          </Group>
+        </form>
+      </Box>
+    </div>
+  )
+}
+
+export default SignUpForm

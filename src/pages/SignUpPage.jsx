@@ -3,12 +3,12 @@ import loginBg from '../assets/img/website-designing.svg'
 import loginBgTwo from '../assets/img/collaborate.svg'
 import loginBgThree from '../assets/img/background-spot.svg'
 
-import LoginForm from '../components/Forms/LoginForm'
+import SignUpForm from '../components/Forms/SignUpForm'
 
 const LoginPage = () => {
   return (
     <div>
-      <LoginForm />
+      <SignUpForm />
       <div>
         <img
           src={loginBg}
