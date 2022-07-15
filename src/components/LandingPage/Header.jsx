@@ -3,7 +3,7 @@ import * as FontAwesome from 'react-icons/fa'
 import { useNavigate } from 'react-router-dom'
 import { Button } from '@mantine/core'
 
-const Header = () => {
+const Header = ({ handleHeaderBool }) => {
   let navigate = useNavigate()
 
   const routeChange = () => {
@@ -44,7 +44,11 @@ const Header = () => {
             </ul>
           </div>
 
-          <Button radius="xl" onClick={routeChange}>
+          <Button radius="xl" onClick={() => { 
+    routeChange()
+    handleHeaderBool(true)
+  }
+    }>
             Login
           </Button>
         </nav>
