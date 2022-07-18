@@ -13,6 +13,7 @@ const LoginForm = () => {
 
     validate: {
       email: value => (/^\S+@\S+$/.test(value) ? null : 'Invalid email'),
+      password: (val) => val.length >= 6
     },
   })
 
