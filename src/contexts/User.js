@@ -31,6 +31,15 @@ export const UserContextProvider = ({ children }) => {
     })
   }
 
+  useEffect(() => {
+    localStorage.setItem('user', JSON.stringify(user))
+  }, [user])
+
+  useEffect(() => {
+    const userData = JSON.parse(localStorage.getItem('user'))
+    setUser(userData)
+  }, [])
+
   return (
     <UserContext.Provider value={{ user, handleLogin, handleLogout }}>
       {children}
