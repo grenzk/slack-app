@@ -7,9 +7,9 @@ import { useForm } from '@mantine/form'
 const SignUpForm = () => {
   const form = useForm({
     initialValues: {
-      email: 'johnsmith@example.com',
-      password: 'foo',
-      confirmPassword: 'foe',
+      email: '',
+      password: '',
+      confirmPassword: '',
     },
 
     validate: {
