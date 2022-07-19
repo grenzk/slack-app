@@ -7,6 +7,14 @@ import TopHeader from '../components/MainPage/TopHeader'
 import MessageInput from '../components/MainPage/MessageInput'
 
 const MainPage = () => {
+  const {
+    user: { isLoggedIn },
+  } = useContext(UserContext)
+
+  if (!isLoggedIn) {
+    return <Navigate to="/LoginPage" />
+  }
+
   return (
     <div>
       <TopHeader />
