@@ -31,9 +31,34 @@ const UserContextProvider = ({ children }) => {
     })
   }
 
+  const handleSettingReceivers = (id, email) => {
+    const updatedReceivers = user.receivers
+    if (!updatedReceivers.includes(id)) {
+      updatedReceivers.push({
+        id,
+        email,
+      })
+    }
+    setUser({
+      ...user,
+      receivers: updatedReceivers,
+    })
+  }
+
+  const handleUpdateReceivers = newReceivers => {
+    setUser({
+      ...user,
+      receivers: newReceivers,
+    })
+  }
+
   useEffect(() => {
     const userData = JSON.parse(localStorage.getItem('user'))
     setUser(userData)
+
+    if (userData) {
+      setUser(userData)
+    }
   }, [])
 
   useEffect(() => {
@@ -41,7 +66,15 @@ const UserContextProvider = ({ children }) => {
   }, [user])
 
   return (
-    <UserContext.Provider value={{ user, handleLogin, handleLogout }}>
+    <UserContext.Provider
+      value={{
+        user,
+        handleLogin,
+        handleLogout,
+        handleSettingReceivers,
+        handleUpdateReceivers,
+      }}
+    >
       {children}
     </UserContext.Provider>
   )
