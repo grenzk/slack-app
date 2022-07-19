@@ -2,17 +2,17 @@ import { useContext, useEffect, useState } from 'react'
 import axios from 'axios'
 import { UserContext } from '../contexts/User'
 
-export const useGet = url => {
+const useGet = url => {
+  const [status, setStatus] = useState('idle')
   const [data, setData] = useState([])
   const [error, setError] = useState([])
-  const [status, setStatus] = useState('idle')
 
   const {
     user: { expiry, uid, accessToken, client },
   } = useContext(UserContext)
 
   useEffect(() => {
-    const header = {
+    const params = {
       expiry: expiry,
       uid: uid,
       'access-token': accessToken,
@@ -21,17 +21,19 @@ export const useGet = url => {
 
     if (!url) return
 
-    const fetchData = async () => {
+    const getData = async () => {
       setStatus('fetching')
       let {
         data: { data },
-      } = await axios.get(url, { header }).catch(error => setError(error))
+      } = await axios.get(url, { params }).catch(err => setError(err))
       setData(data)
       setStatus('fetched')
     }
 
-    fetchData()
+    getData()
   }, [url, expiry, uid, accessToken, client])
 
   return { status, data, error }
 }
+
+export default useGet

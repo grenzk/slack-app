@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { Plus, Hash } from 'tabler-icons-react'
-import { useGet } from '../../api/useGet'
+import useGet from '../../api/useGet'
 
 const Channels = ({ setIsModalOn }) => {
   const { status, data } = useGet('http://206.189.91.54/api/v1/channels')

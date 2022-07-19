@@ -1,4 +1,6 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { UserContext } from '../contexts/User'
+import { Navigate } from 'react-router-dom'
 import Sidebar from '../components/MainPage/Sidebar'
 import ChatBox from '../components/MainPage/ChatBox'
 import TopHeader from '../components/MainPage/TopHeader'
