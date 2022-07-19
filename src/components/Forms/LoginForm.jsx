@@ -31,7 +31,7 @@ const LoginForm = () => {
     setErrorMessage([])
 
     setUserLoginInfo({
-      ...setUserLoginInfo,
+      ...userLoginInfo,
       [key]: value,
     })
   }
@@ -63,6 +63,7 @@ const LoginForm = () => {
           <TextInput
             required
             type="email"
+            id="email"
             icon={<At size={16} />}
             label="Email"
             placeholder="your@email.com"
@@ -72,6 +73,7 @@ const LoginForm = () => {
 
           <PasswordInput
             required
+            id="password"
             icon={<Lock size={16} />}
             type="password"
             label="Password"

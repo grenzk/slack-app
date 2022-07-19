@@ -1,58 +1,90 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { At, Lock } from 'tabler-icons-react'
-import { TextInput, PasswordInput, Button, Group, Box } from '@mantine/core'
-import { useForm } from '@mantine/form'
+import {
+  TextInput,
+  Text,
+  PasswordInput,
+  Button,
+  Group,
+  Box,
+} from '@mantine/core'
+import usePost from '../../api/usePost'
 
 const SignUpForm = () => {
-  const form = useForm({
-    initialValues: {
-      email: '',
-      password: '',
-      confirmPassword: '',
-    },
-
-    validate: {
-      email: value => (/^\S+@\S+$/.test(value) ? null : 'Invalid email'),
-      confirmPassword: (value, values) =>
-        value !== values.password ? 'Passwords did not match' : null,
-    },
+  const [userSignUpInfo, setUserSignUpInfo] = useState({
+    email: '',
+    password: '',
+    confirmPassword: '',
   })
+  const [errorMessage, setErrorMessage] = useState([])
+  const { res, errors, handleSubmit } = usePost(
+    'http://206.189.91.54/api/v1/auth',
+    userSignUpInfo
+  )
 
   let navigate = useNavigate()
 
-  const handleSubmit = () => {
-    navigate('/LoginPage')
+  const handleChange = e => {
+    const key = e.target.id
+    const value = e.target.value
+
+    setErrorMessage([])
+
+    setUserSignUpInfo({
+      ...userSignUpInfo,
+      [key]: value,
+    })
   }
+
+  useEffect(() => {
+    if (res?.data?.status === 'success') {
+      navigate('/LoginPage')
+    }
+    setErrorMessage(errors.full_messages)
+  }, [res, errors, navigate])
 
   return (
     <div>
       <Box className="login-form-container" mx="auto">
-        <form onSubmit={form.onSubmit(handleSubmit)}>
+        <form onSubmit={handleSubmit}>
           <TextInput
             required
+            type="email"
+            id="email"
             icon={<At size={16} />}
             label="Email"
             placeholder="your@email.com"
-            {...form.getInputProps('email')}
+            value={userSignUpInfo.email}
+            onChange={handleChange}
           />
 
           <PasswordInput
             required
             icon={<Lock size={16} />}
+            id="password"
             label="Password"
             placeholder="Password"
-            {...form.getInputProps('password')}
+            value={userSignUpInfo.password}
+            onChange={handleChange}
           />
 
           <PasswordInput
             required
             icon={<Lock size={16} />}
             mt="sm"
+            id="confirmPassword"
             label="Confirm password"
             placeholder="Confirm password"
-            {...form.getInputProps('confirmPassword')}
+            value={userSignUpInfo.confirmPassword}
+            onChange={handleChange}
           />
+
+          {errorMessage?.map((message, index) => (
+            <Text key={index} color="red">
+              {message}
+            </Text>
+          ))}
 
           <Group position="center" mt="md">
             <Button type="submit" fullWidth>
