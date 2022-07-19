@@ -8,7 +8,7 @@ import Channels from '../Sidebar/Channels'
 
 const data = [{ link: '', label: 'general', icon: Hash }]
 
-const Sidebar = () => {
+const Sidebar = ({ setIsModalOn }) => {
   const { handleLogout } = useContext(UserContext)
   const { classes, cx } = useStyles()
   const [active, setActive] = useState('Billing')
@@ -42,7 +42,7 @@ const Sidebar = () => {
             <h2>Avion School</h2>
             <Code className={classes.version}>v3.1.2</Code>
           </Group>
-          <Channels />
+          <Channels setIsModalOn={setIsModalOn} />
         </Navbar.Section>
 
         <Navbar.Section className={classes.footer}>
