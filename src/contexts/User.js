@@ -1,8 +1,8 @@
 import { useEffect, useState, createContext } from 'react'
 
-export const UserContext = createContext()
+const UserContext = createContext()
 
-export const UserContextProvider = ({ children }) => {
+const UserContextProvider = ({ children }) => {
   const [user, setUser] = useState({
     isLoggedIn: false,
   })
@@ -32,13 +32,13 @@ export const UserContextProvider = ({ children }) => {
   }
 
   useEffect(() => {
-    localStorage.setItem('user', JSON.stringify(user))
-  }, [user])
-
-  useEffect(() => {
     const userData = JSON.parse(localStorage.getItem('user'))
     setUser(userData)
   }, [])
+
+  useEffect(() => {
+    localStorage.setItem('user', JSON.stringify(user))
+  }, [user])
 
   return (
     <UserContext.Provider value={{ user, handleLogin, handleLogout }}>
@@ -46,3 +46,5 @@ export const UserContextProvider = ({ children }) => {
     </UserContext.Provider>
   )
 }
+
+export { UserContextProvider, UserContext }

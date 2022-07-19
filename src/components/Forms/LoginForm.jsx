@@ -1,47 +1,90 @@
-import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import React, { useContext, useEffect, useState } from 'react'
+import { Navigate, Link } from 'react-router-dom'
 import { At, Lock } from 'tabler-icons-react'
-import { TextInput, PasswordInput, Button, Group, Box } from '@mantine/core'
-import { useForm } from '@mantine/form'
+import {
+  TextInput,
+  Text,
+  PasswordInput,
+  Button,
+  Group,
+  Box,
+} from '@mantine/core'
+import { UserContext } from '../../contexts/User'
+import usePost from '../../api/usePost'
 
 const LoginForm = () => {
-  const form = useForm({
-    initialValues: {
-      email: '',
-      password: '',
-    },
-
-    validate: {
-      email: value => (/^\S+@\S+$/.test(value) ? null : 'Invalid email'),
-      password: (val) => val.length >= 6
-    },
+  const [userLoginInfo, setUserLoginInfo] = useState({
+    email: '',
+    password: '',
   })
+  const [errorMessage, setErrorMessage] = useState([])
+  const { res, errors, handleSubmit } = usePost(
+    'http://206.189.91.54/api/v1/auth/sign_in',
+    userLoginInfo
+  )
+  const { user, handleLogin } = useContext(UserContext)
 
-  let navigate = useNavigate()
+  const handleChange = e => {
+    const key = e.target.id
+    const value = e.target.value
 
-  const handleSubmit = () => {
-    navigate('/MainPage')
+    setErrorMessage([])
+
+    setUserLoginInfo({
+      ...setUserLoginInfo,
+      [key]: value,
+    })
+  }
+
+  useEffect(() => {
+    if (res?.data && res?.headers) {
+      const {
+        data: {
+          data: { email, uid },
+        },
+
+        headers: { 'access-token': accessToken, client, expiry },
+      } = res
+
+      handleLogin(uid, accessToken, client, email, expiry)
+    }
+
+    setErrorMessage(errors)
+  }, [res, errors, handleLogin])
+
+  if (user?.isLoggedIn) {
+    return <Navigate to="/MainPage" />
   }
 
   return (
     <div>
       <Box className="login-form-container" mx="auto">
-        <form onSubmit={form.onSubmit(handleSubmit)}>
+        <form onSubmit={handleSubmit}>
           <TextInput
             required
+            type="email"
             icon={<At size={16} />}
             label="Email"
             placeholder="your@email.com"
-            {...form.getInputProps('email')}
+            value={userLoginInfo.email}
+            onChange={handleChange}
           />
 
           <PasswordInput
             required
             icon={<Lock size={16} />}
+            type="password"
             label="Password"
             placeholder="Password"
-            {...form.getInputProps('password')}
+            value={userLoginInfo.password}
+            onChange={handleChange}
           />
+
+          {errorMessage?.map((message, index) => (
+            <Text key={index} color="red">
+              {message}
+            </Text>
+          ))}
 
           <Group position="center" mt="md">
             <Button type="submit" fullWidth>
