@@ -3,9 +3,17 @@ import { useEffect, useState, createContext } from 'react'
 const UserContext = createContext()
 
 const UserContextProvider = ({ children }) => {
-  const [user, setUser] = useState({
-    isLoggedIn: false,
-  })
+  const [user, setUser] = useState({})
+
+  useEffect(() => {
+    const userData = JSON.parse(localStorage.getItem('user'))
+
+    if (userData === null) {
+      handleLogout()
+    }
+
+    setUser(userData)
+  }, [])
 
   const handleLogin = (uid, accessToken, client, userEmail, expiry) => {
     setUser({
@@ -17,10 +25,12 @@ const UserContextProvider = ({ children }) => {
       isLoggedIn: true,
       receivers: [],
     })
+
+    localStorage.setItem('user', JSON.stringify(user))
   }
 
   const handleLogout = () => {
-    setUser({
+    const loggedOut = {
       uid: '',
       accessToken: '',
       client: '',
@@ -28,7 +38,9 @@ const UserContextProvider = ({ children }) => {
       expiry: '',
       isLoggedIn: false,
       receivers: [],
-    })
+    }
+
+    localStorage.setItem('user', JSON.stringify(loggedOut))
   }
 
   const handleSettingReceivers = (id, email) => {
@@ -51,19 +63,6 @@ const UserContextProvider = ({ children }) => {
       receivers: newReceivers,
     })
   }
-
-  useEffect(() => {
-    const userData = JSON.parse(localStorage.getItem('user'))
-    setUser(userData)
-
-    if (userData) {
-      setUser(userData)
-    }
-  }, [])
-
-  useEffect(() => {
-    localStorage.setItem('user', JSON.stringify(user))
-  }, [user])
 
   return (
     <UserContext.Provider
