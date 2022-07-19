@@ -42,7 +42,7 @@ const Sidebar = () => {
             <h2>Avion School</h2>
             <Code className={classes.version}>v3.1.2</Code>
           </Group>
-          {/* <Channels /> */}
+          <Channels />
         </Navbar.Section>
 
         <Navbar.Section className={classes.footer}>
