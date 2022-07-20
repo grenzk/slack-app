@@ -38,7 +38,6 @@ const CreateChannelForm = ({ opened }) => {
         if (response.data.errors !== undefined) {
           setErrors(true)
           setErrorMessage(response.data.errors)
-          console.log(response.data.errors)
         } else {
           setErrors(false)
           setChannelName('')
