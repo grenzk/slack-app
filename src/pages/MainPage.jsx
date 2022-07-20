@@ -3,11 +3,10 @@ import { UserContext } from '../contexts/User'
 import { Navigate, Route, Routes } from 'react-router-dom'
 import { Modal } from '@mantine/core'
 import Sidebar from '../components/MainPage/Sidebar'
-import ChatBox from '../components/MainPage/ChatBox'
 import TopHeader from '../components/MainPage/TopHeader'
-import MessageInput from '../components/MainPage/MessageInput'
+import Messages from '../components/Messages/Messages'
 import CreateChannelForm from '../components/Modal/CreateChannelForm'
-import { Title } from '../components/Messages/Title'
+import Title from '../components/Messages/Title'
 
 const MainPage = () => {
   const [selectedChannel, setSelectedChannel] = useState({})
@@ -26,18 +25,27 @@ const MainPage = () => {
       <TopHeader />
       <Sidebar setIsModalOn={setIsModalOn} />
       <Routes>
-        <Route path="/:id" />
+        <Route
+          path="/:id"
+          element={
+            <Messages
+              isNewMessage={isNewMessage}
+              setIsNewMessage={setIsNewMessage}
+              setIsModalOn={setIsModalOn}
+              selectedChannel={selectedChannel}
+              setSelectedChannel={setSelectedChannel}
+            />
+          }
+        />
         <Route
           path="/"
           element={
-            <div className='title-container'>
+            <div className="title-container">
               <Title />
             </div>
           }
         />
       </Routes>
-      <ChatBox />
-      <MessageInput />
 
       <Modal
         centered
