@@ -32,7 +32,7 @@ const MainPage = () => {
         onClose={() => setIsModalOn(false)}
         size="sm"
       >
-        <CreateChannelForm />
+        <CreateChannelForm opened={isModalOn}/>
       </Modal>
     </div>
   )
