@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react'
 import axios from 'axios'
-import { TextInput, MultiSelect, Group, Button } from '@mantine/core'
+import { TextInput, Text, MultiSelect, Group, Button } from '@mantine/core'
 
 import useGet from '../../api/useGet'
 import { UserContext } from '../../contexts/User'
@@ -80,6 +80,13 @@ const CreateChannelForm = ({ opened }) => {
         maxDropdownHeight={150}
         clearable
       />
+
+      {errors &&
+        errorMessage?.map((message, index) => (
+          <Text color="red" key={index}>
+            {message}
+          </Text>
+        ))}
 
       <Group grow>
         <Button type="submit">Create Channel</Button>
