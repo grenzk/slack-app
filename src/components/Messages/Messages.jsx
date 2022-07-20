@@ -42,7 +42,7 @@ const Messages = ({
             />
           </div>
           <ChatBox />
-          <MessageInput />
+          <MessageInput selectedChannel={selectedChannel} />
         </>
       )}
     </div>
