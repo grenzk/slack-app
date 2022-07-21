@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { UserContext } from '../../contexts/User'
 import { MultiSelect } from '@mantine/core'
-import { UserCircle } from 'tabler-icons-react'
+import { UserCircle, ChevronDown } from 'tabler-icons-react'
 
 const UserSelection = ({ userList, status, setIsNewMessage }) => {
   const [userId, setUserId] = useState([])
@@ -20,8 +20,11 @@ const UserSelection = ({ userList, status, setIsNewMessage }) => {
   return (
     <div>
       <MultiSelect
-        icon={<UserCircle />}
+        icon={<UserCircle size={16} />}
+        rightSection={<ChevronDown size={16} />}
         value={userId}
+        variant="unstyled"
+        placeholder="Enter user"
         onChange={e => handleSubmit(e)}
         className="user-select"
         limit={20}
@@ -35,8 +38,8 @@ const UserSelection = ({ userList, status, setIsNewMessage }) => {
           return userObj
         })}
         searchable
-        clearable
         maxDropdownHeight={150}
+        nothingFound="Nothing found"
       />
     </div>
   )
