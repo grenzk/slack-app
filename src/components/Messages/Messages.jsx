@@ -41,8 +41,14 @@ const Messages = ({
               setIsModalOn={setIsModalOn}
             />
           </div>
-          <ChatBox selectedChannel={selectedChannel} />
-          <MessageInput selectedChannel={selectedChannel} />
+          <ChatBox
+            selectedChannel={selectedChannel}
+            selectedUser={selectedUser}
+          />
+          <MessageInput
+            selectedChannel={selectedChannel}
+            selectedUser={selectedUser}
+          />
         </>
       )}
     </div>

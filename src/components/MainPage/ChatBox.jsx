@@ -4,7 +4,7 @@ import { UserContext } from '../../contexts/User'
 import { Box } from '@mantine/core'
 import Sender from '../Messages/Sender'
 
-const ChatBox = ({ selectedChannel }) => {
+const ChatBox = ({ selectedUser, selectedChannel }) => {
   const [messagesData, setMessagesData] = useState([])
   const {
     user: { expiry, uid, accessToken, client },
@@ -61,6 +61,8 @@ const ChatBox = ({ selectedChannel }) => {
     const interval = setInterval(() => {
       if (selectedChannel) {
         getMessages(selectedChannel?.id, 'Channel', params)
+      } else {
+        getMessages(selectedChannel?.id, 'User', params)
       }
     }, 1000)
 

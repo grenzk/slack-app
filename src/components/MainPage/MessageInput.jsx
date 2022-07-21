@@ -4,7 +4,7 @@ import usePost from '../../api/usePost'
 import { TextInput, Button } from '@mantine/core'
 import { Send } from 'tabler-icons-react'
 
-const MessageInput = ({ selectedChannel }) => {
+const MessageInput = ({ selectedUser, selectedChannel }) => {
   const [messageBody, setMessageBody] = useState('')
   const [body, setBody] = useState({})
   const {
@@ -35,8 +35,14 @@ const MessageInput = ({ selectedChannel }) => {
         receiver_class: 'Channel',
         body: messageBody,
       })
+    } else if (selectedUser?.id) {
+      setBody({
+        receiver_id: selectedUser.id,
+        receiver_class: 'User',
+        body: messageBody,
+      })
     }
-  }, [selectedChannel, messageBody])
+  }, [selectedChannel, selectedUser, messageBody])
 
   useEffect(() => {
     if (res) {

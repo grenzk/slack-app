@@ -14,7 +14,7 @@ const UserSelection = ({ userList, status, setIsNewMessage }) => {
     let receiver = userList.find(user => user.id === e[0])
     handleSettingReceivers(e[0], receiver.email)
     setIsNewMessage(false)
-    // navigate(`/app/${userId}`)
+    navigate(`/MainPage/${e[0]}`)
   }
 
   return (

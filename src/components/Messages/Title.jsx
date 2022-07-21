@@ -33,7 +33,7 @@ const Title = ({
               ? selectedUser.email
               : selectedChannel
               ? selectedChannel.name
-              : 'Create or Select a Channel or Direct Message'}
+              : 'Start Messaging'}
           </h1>
         </Container>
       )}
