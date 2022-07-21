@@ -1,10 +1,11 @@
 import React, { useState, useContext } from 'react'
-import { Navbar, Group, Button } from '@mantine/core'
+import { Navbar, Group, Button, ActionIcon } from '@mantine/core'
 import { Hash, Logout, MessageDots } from 'tabler-icons-react'
 import useStyles from '../../assets/js/mantineStyles'
 import { UserContext } from '../../contexts/User'
 
 import Channels from '../Sidebar/Channels'
+import DirectMessages from '../Sidebar/DirectMessages'
 
 const data = [{ link: '', label: 'general', icon: Hash }]
 
@@ -44,11 +45,17 @@ const Sidebar = ({ setIsModalOn, setIsNewMessage }) => {
         <Navbar.Section grow>
           <Group className={classes.header} position="apart">
             <h2>Avion School</h2>
-            <Button radius="md" onClick={handleNewMessage}>
+            <ActionIcon
+              radius="sm"
+              color="blue"
+              variant="filled"
+              onClick={handleNewMessage}
+            >
               <MessageDots />
-            </Button>
+            </ActionIcon>
           </Group>
           <Channels setIsModalOn={setIsModalOn} />
+          <DirectMessages />
         </Navbar.Section>
 
         <Navbar.Section className={classes.footer}>

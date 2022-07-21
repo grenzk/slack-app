@@ -15,7 +15,7 @@ const Channels = ({ setIsModalOn }) => {
 
   return (
     <div>
-      <h3 className="group-label">Channels</h3>
+      <h3 className='dm'>Channels</h3>
       <div
         onClick={handleNewChannel}
         className={cx(classes.link, {
