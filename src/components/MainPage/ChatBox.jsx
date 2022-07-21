@@ -62,12 +62,12 @@ const ChatBox = ({ selectedUser, selectedChannel }) => {
       if (selectedChannel) {
         getMessages(selectedChannel?.id, 'Channel', params)
       } else {
-        getMessages(selectedChannel?.id, 'User', params)
+        getMessages(selectedUser.id, 'User', params)
       }
     }, 1000)
 
     return () => clearInterval(interval)
-  }, [selectedChannel, expiry, uid, accessToken, client])
+  }, [selectedChannel, selectedUser, expiry, uid, accessToken, client])
 
   return (
     <div>
