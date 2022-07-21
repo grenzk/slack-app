@@ -29,6 +29,14 @@ const CreateChannelForm = ({ opened }) => {
     setChannelName(e.target.value)
   }
 
+  const handleChange = e => {
+    setUserId(e)
+    setChannelInfo({
+      ...channelInfo,
+      user_ids: e,
+    })
+  }
+
   const handleCreateChannel = e => {
     e.preventDefault()
 
@@ -68,7 +76,7 @@ const CreateChannelForm = ({ opened }) => {
         searchable
         limit={20}
         value={userId}
-        onChange={setUserId}
+        onChange={e => handleChange(e)}
         data={data.map(user => {
           const userObj = {
             value: user.id,
