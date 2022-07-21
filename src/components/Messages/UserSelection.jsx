@@ -1,19 +1,43 @@
+import React, { useContext, useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { UserContext } from '../../contexts/User'
 import { MultiSelect } from '@mantine/core'
+import { UserCircle } from 'tabler-icons-react'
 
-const data = [
-  { value: 'react', label: 'React' },
-  { value: 'ng', label: 'Angular' },
-  { value: 'svelte', label: 'Svelte' },
-  { value: 'vue', label: 'Vue' },
-  { value: 'riot', label: 'Riot' },
-  { value: 'next', label: 'Next.js' },
-  { value: 'blitz', label: 'Blitz.js' },
-];
+const UserSelection = ({ userList, status, setIsNewMessage }) => {
+  const [userId, setUserId] = useState([])
+  const { handleSettingReceivers } = useContext(UserContext)
+  const navigate = useNavigate()
 
-const UserSelection = () => {
+  const handleSubmit = e => {
+    setUserId(e)
+    let receiver = userList.find(user => user.id === e[0])
+    handleSettingReceivers(e[0], receiver.email)
+    setIsNewMessage(false)
+    // navigate(`/app/${userId}`)
+  }
+
   return (
     <div>
-      <MultiSelect className='user-select' data={data} />
+      <MultiSelect
+        icon={<UserCircle />}
+        value={userId}
+        onChange={e => handleSubmit(e)}
+        className="user-select"
+        limit={20}
+        maxSelectedValues={1}
+        data={userList.map(user => {
+          const userObj = {
+            value: user.id,
+            label: user.email,
+          }
+
+          return userObj
+        })}
+        searchable
+        clearable
+        maxDropdownHeight={150}
+      />
     </div>
   )
 }
