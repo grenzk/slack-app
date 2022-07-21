@@ -41,7 +41,10 @@ const MainPage = () => {
           path="/"
           element={
             <div className="title-container">
-              <Title />
+              <Title
+                isNewMessage={isNewMessage}
+                setIsNewMessage={setIsNewMessage}
+              />
             </div>
           }
         />
