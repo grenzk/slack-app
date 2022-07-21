@@ -23,7 +23,7 @@ const MainPage = () => {
   return (
     <div>
       <TopHeader />
-      <Sidebar setIsModalOn={setIsModalOn} />
+      <Sidebar setIsModalOn={setIsModalOn} setIsNewMessage={setIsNewMessage} />
       <Routes>
         <Route
           path="/:id"

@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react'
-import { Navbar, Group, Code } from '@mantine/core'
-import { Hash, Logout } from 'tabler-icons-react'
+import { Navbar, Group, Button } from '@mantine/core'
+import { Hash, Logout, MessageDots } from 'tabler-icons-react'
 import useStyles from '../../assets/js/mantineStyles'
 import { UserContext } from '../../contexts/User'
 
@@ -8,13 +8,17 @@ import Channels from '../Sidebar/Channels'
 
 const data = [{ link: '', label: 'general', icon: Hash }]
 
-const Sidebar = ({ setIsModalOn }) => {
+const Sidebar = ({ setIsModalOn, setIsNewMessage }) => {
   const { handleLogout } = useContext(UserContext)
   const { classes, cx } = useStyles()
   const [active, setActive] = useState('Billing')
 
   const handleClick = () => {
     handleLogout()
+  }
+
+  const handleNewMessage = () => {
+    setIsNewMessage(prevState => !prevState)
   }
 
   const links = data.map(item => (
@@ -40,7 +44,9 @@ const Sidebar = ({ setIsModalOn }) => {
         <Navbar.Section grow>
           <Group className={classes.header} position="apart">
             <h2>Avion School</h2>
-            <Code className={classes.version}>v3.1.2</Code>
+            <Button radius="md" onClick={handleNewMessage}>
+              <MessageDots />
+            </Button>
           </Group>
           <Channels setIsModalOn={setIsModalOn} />
         </Navbar.Section>
