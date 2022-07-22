@@ -1,9 +1,10 @@
 import React, { useState, useContext, useEffect } from 'react'
 import axios from 'axios'
 import { UserContext } from '../../contexts/User'
+import { Text, MultiSelect, Button, Group } from '@mantine/core'
 import useGet from '../../api/useGet'
 
-const ChannelDetails = ({ selectedChannel, changeModalName }) => {
+const ChannelDetails = ({ selectedChannel }) => {
   const { status, data } = useGet('http://206.189.91.54/api/v1/users')
   const [channelInfo, setChannelInfo] = useState({})
   const [channelMembers, setChannelMembers] = useState([])
@@ -58,7 +59,6 @@ const ChannelDetails = ({ selectedChannel, changeModalName }) => {
       })
       setChannelInfo(data)
     }
-      
     getChannelInfo()
   }, [data, id, params])
 
@@ -76,7 +76,32 @@ const ChannelDetails = ({ selectedChannel, changeModalName }) => {
 
   return (
     <div>
-      <h3>{channelInfo.name}</h3>
+      <Text>Name: {channelInfo.name}</Text>
+      <Text>Owner: {ownerInfo?.uid}</Text>
+      <Text sx={{ marginBottom: 20 }}>
+        Date Created: {date !== 'Invalid Date' && date}
+      </Text>
+
+      <MultiSelect
+        sx={{ marginBottom: 175 }}
+        limit={20}
+        label="Add Members"
+        maxDropdownHeight={150}
+        maxSelectedValues={1}
+        searchable
+        clearable
+        data={data.map(user => {
+          const userObj = {
+            value: user.id,
+            label: user.email,
+          }
+
+          return userObj
+        })}
+      />
+      <Group position='right'>
+        <Button>Add Member</Button>
+      </Group>
     </div>
   )
 }

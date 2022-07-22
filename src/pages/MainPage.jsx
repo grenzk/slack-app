@@ -14,16 +14,13 @@ const MainPage = () => {
   const [isModalOn, setIsModalOn] = useState(false)
   const [isNewMessage, setIsNewMessage] = useState(false)
   const [isChannelInfo, setIsChannelInfo] = useState(false)
+
   const {
     user: { isLoggedIn },
   } = useContext(UserContext)
 
   if (!isLoggedIn) {
     return <Navigate to="/LoginPage" />
-  }
-
-  const changeModalName = (channelInfo) => {
-    console.log(channelInfo)
   }
 
   return (
@@ -59,13 +56,18 @@ const MainPage = () => {
 
       <Modal
         centered
-        title="Create Channel"
+        title={`${'Channel Details'}`}
         opened={isModalOn}
-        onClose={() => setIsModalOn(false)}
+        onClose={() => {
+          setIsModalOn(false)
+        }}
         size="sm"
       >
         {isChannelInfo ? (
-          <ChannelDetails selectedChannel={selectedChannel} changeModalName={changeModalName} opened={isModalOn} />
+          <ChannelDetails
+            selectedChannel={selectedChannel}
+            opened={isModalOn}
+          />
         ) : (
           <CreateChannelForm opened={isModalOn} />
         )}
