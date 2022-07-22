@@ -22,7 +22,7 @@ const Title = ({
   }
 
   return (
-    <Header height={52.5} mb={120} className={classes.root}>
+    <Header height={56} mb={120} className={classes.root}>
       {isNewMessage ? (
         <UserSelection
           userList={data}

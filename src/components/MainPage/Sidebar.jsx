@@ -47,6 +47,7 @@ const Sidebar = ({ setIsModalOn, setIsNewMessage }) => {
             <h2>Avion School</h2>
             <ActionIcon
               radius="sm"
+              size={31}
               color="blue"
               variant="filled"
               onClick={handleNewMessage}
