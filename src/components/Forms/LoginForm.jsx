@@ -75,7 +75,6 @@ const LoginForm = () => {
             required
             id="password"
             icon={<Lock size={16} />}
-            type="password"
             label="Password"
             placeholder="Password"
             value={userLoginInfo.password}
