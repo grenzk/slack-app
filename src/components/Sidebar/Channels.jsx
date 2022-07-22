@@ -4,12 +4,13 @@ import { Plus, Hash } from 'tabler-icons-react'
 import useStyles from '../../assets/js/mantineStyles'
 import useGet from '../../api/useGet'
 
-const Channels = ({ setIsModalOn }) => {
+const Channels = ({ setIsModalOn, setIsChannelInfo }) => {
   const { status, data } = useGet('http://206.189.91.54/api/v1/channels')
   const { classes } = useStyles()
 
   const handleNewChannel = () => {
     setIsModalOn(true)
+    setIsChannelInfo(false)
   }
 
   return (

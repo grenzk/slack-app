@@ -26,7 +26,11 @@ const MainPage = () => {
   return (
     <div>
       <TopHeader />
-      <Sidebar setIsModalOn={setIsModalOn} setIsNewMessage={setIsNewMessage} />
+      <Sidebar
+        setIsModalOn={setIsModalOn}
+        setIsChannelInfo={setIsChannelInfo}
+        setIsNewMessage={setIsNewMessage}
+      />
       <Routes>
         <Route
           path="/:id"
@@ -56,7 +60,7 @@ const MainPage = () => {
 
       <Modal
         centered
-        title={`${'Channel Details'}`}
+        title={`${isChannelInfo ? 'Channel Details' : 'Create Channel'}`}
         opened={isModalOn}
         onClose={() => {
           setIsModalOn(false)

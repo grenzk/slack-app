@@ -9,7 +9,7 @@ import DirectMessages from '../Sidebar/DirectMessages'
 
 const data = [{ link: '', label: 'general', icon: Hash }]
 
-const Sidebar = ({ setIsModalOn, setIsNewMessage }) => {
+const Sidebar = ({ setIsModalOn, setIsChannelInfo, setIsNewMessage }) => {
   const { handleLogout } = useContext(UserContext)
   const { classes } = useStyles()
 
@@ -37,7 +37,7 @@ const Sidebar = ({ setIsModalOn, setIsNewMessage }) => {
               <MessageDots />
             </ActionIcon>
           </Group>
-          <Channels setIsModalOn={setIsModalOn} />
+          <Channels setIsModalOn={setIsModalOn} setIsChannelInfo={setIsChannelInfo} />
           <DirectMessages />
         </Navbar.Section>
 
