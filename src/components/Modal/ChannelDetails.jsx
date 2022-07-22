@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react'
 import axios from 'axios'
 import { UserContext } from '../../contexts/User'
-import { Text, MultiSelect, Button, Group } from '@mantine/core'
+import { Text, MultiSelect, Button, Group, ScrollArea } from '@mantine/core'
 import useGet from '../../api/useGet'
 
 const ChannelDetails = ({ selectedChannel }) => {
@@ -74,16 +74,16 @@ const ChannelDetails = ({ selectedChannel }) => {
 
   return (
     <div>
-      <Text>Name: {channelInfo.name}</Text>
-      <Text>Owner: {ownerInfo?.uid}</Text>
+      <Text>Name: {channelInfo.name || 'Loading...'}</Text>
+      <Text>Owner: {ownerInfo?.uid || 'Loading...'}</Text>
       <Text sx={{ marginBottom: 20 }}>
-        Date Created: {date !== 'Invalid Date' && date}
+        Date Created: {(date !== 'Invalid Date' && date) || 'Loading...'}
       </Text>
       <form onSubmit={e => handleSubmit(e)}>
         <MultiSelect
           sx={{ marginBottom: 20 }}
           limit={20}
-          label="Add Members"
+          label="Add member"
           value={userId}
           onChange={setUserId}
           maxDropdownHeight={150}
@@ -100,7 +100,7 @@ const ChannelDetails = ({ selectedChannel }) => {
           })}
         />
         <Text>Members:</Text>
-        <div style={{ marginBottom: 100 }} className="members-container">
+        <ScrollArea style={{ height: 120, marginBottom: 100 }} type='hover'>
           {channelMembers.length === 0 ? (
             <div>Loading ...</div>
           ) : (
@@ -108,9 +108,11 @@ const ChannelDetails = ({ selectedChannel }) => {
               <Text key={member.id}>{member.uid}</Text>
             ))
           )}
-        </div>
-        <Group position="right">
-          <Button type="submit">Add Member</Button>
+        </ScrollArea>
+        <Group>
+          <Button type="submit" fullWidth>
+            Add Member
+          </Button>
         </Group>
       </form>
     </div>
