@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { Navigate } from 'react-router-dom'
+import { useNavigate, Navigate } from 'react-router-dom'
 import { At, Lock } from 'tabler-icons-react'
 import {
   TextInput,
@@ -8,6 +8,7 @@ import {
   Button,
   Group,
   Box,
+  Anchor,
 } from '@mantine/core'
 import { UserContext } from '../../contexts/User'
 import usePost from '../../api/usePost'
@@ -23,18 +24,7 @@ const LoginForm = () => {
     userLoginInfo
   )
   const { user, handleLogin } = useContext(UserContext)
-
-  const handleChange = e => {
-    const key = e.target.id
-    const value = e.target.value
-
-    setErrorMessage([])
-
-    setUserLoginInfo({
-      ...userLoginInfo,
-      [key]: value,
-    })
-  }
+  const navigate = useNavigate()
 
   useEffect(() => {
     if (res?.data && res?.headers) {
@@ -51,6 +41,22 @@ const LoginForm = () => {
 
     setErrorMessage(errors)
   }, [res, errors, handleLogin])
+
+  const handleClick = () => {
+    navigate('/SignUpPage')
+  }
+
+  const handleChange = e => {
+    const key = e.target.id
+    const value = e.target.value
+
+    setErrorMessage([])
+
+    setUserLoginInfo({
+      ...userLoginInfo,
+      [key]: value,
+    })
+  }
 
   if (user?.isLoggedIn) {
     return <Navigate to="/MainPage" />
@@ -87,10 +93,17 @@ const LoginForm = () => {
             </Text>
           ))}
 
-          <Group position="center" mt="md">
-            <Button type="submit" fullWidth>
-              Login
-            </Button>
+          <Group position="apart" mt="md">
+            <Anchor
+              component="button"
+              type="button"
+              color="gray"
+              onClick={handleClick}
+              size="sm"
+            >
+              Don't have an account? Register
+            </Anchor>
+            <Button type="submit">Login</Button>
           </Group>
         </form>
       </Box>

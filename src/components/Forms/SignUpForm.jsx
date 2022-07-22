@@ -8,6 +8,7 @@ import {
   Button,
   Group,
   Box,
+  Anchor,
 } from '@mantine/core'
 import usePost from '../../api/usePost'
 
@@ -25,6 +26,17 @@ const SignUpForm = () => {
 
   let navigate = useNavigate()
 
+  useEffect(() => {
+    if (res?.data?.status === 'success') {
+      navigate('/LoginPage')
+    }
+    setErrorMessage(errors.full_messages)
+  }, [res, errors, navigate])
+
+  const handleClick = () => {
+    navigate('/LoginPage')
+  }
+
   const handleChange = e => {
     const key = e.target.id
     const value = e.target.value
@@ -36,13 +48,6 @@ const SignUpForm = () => {
       [key]: value,
     })
   }
-
-  useEffect(() => {
-    if (res?.data?.status === 'success') {
-      navigate('/LoginPage')
-    }
-    setErrorMessage(errors.full_messages)
-  }, [res, errors, navigate])
 
   return (
     <div>
@@ -86,10 +91,17 @@ const SignUpForm = () => {
             </Text>
           ))}
 
-          <Group position="center" mt="md">
-            <Button type="submit" fullWidth>
-              Sign Up
-            </Button>
+          <Group position="apart" mt="md">
+            <Anchor
+              component="button"
+              type="button"
+              color="gray"
+              onClick={handleClick}
+              size="sm"
+            >
+              Already have an account? Login
+            </Anchor>
+            <Button type="submit">Sign Up</Button>
           </Group>
         </form>
       </Box>
