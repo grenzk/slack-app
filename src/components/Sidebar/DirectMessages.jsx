@@ -1,5 +1,4 @@
 import React, { useContext } from 'react'
-import { Group } from '@mantine/core'
 import { Link, useNavigate } from 'react-router-dom'
 import useStyles from '../../assets/js/mantineStyles'
 import { UserMinus } from 'tabler-icons-react'

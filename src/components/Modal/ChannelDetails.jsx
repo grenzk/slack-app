@@ -5,7 +5,7 @@ import { Text, MultiSelect, Button, Group, ScrollArea } from '@mantine/core'
 import useGet from '../../api/useGet'
 
 const ChannelDetails = ({ selectedChannel }) => {
-  const { status, data } = useGet('http://206.189.91.54/api/v1/users')
+  const { data } = useGet('http://206.189.91.54/api/v1/users')
   const [channelInfo, setChannelInfo] = useState({})
   const [userId, setUserId] = useState([])
   const [channelMembers, setChannelMembers] = useState([])
@@ -15,6 +15,7 @@ const ChannelDetails = ({ selectedChannel }) => {
     user: { expiry, uid, accessToken, client },
   } = useContext(UserContext)
 
+  // eslint-disable-next-line
   const params = {
     expiry: expiry,
     uid: uid,
@@ -100,7 +101,7 @@ const ChannelDetails = ({ selectedChannel }) => {
           })}
         />
         <Text>Members:</Text>
-        <ScrollArea style={{ height: 120, marginBottom: 100 }} type='hover'>
+        <ScrollArea style={{ height: 120, marginBottom: 100 }} type="hover">
           {channelMembers.length === 0 ? (
             <div>Loading ...</div>
           ) : (
