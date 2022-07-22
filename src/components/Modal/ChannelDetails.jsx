@@ -7,6 +7,7 @@ import useGet from '../../api/useGet'
 const ChannelDetails = ({ selectedChannel }) => {
   const { status, data } = useGet('http://206.189.91.54/api/v1/users')
   const [channelInfo, setChannelInfo] = useState({})
+  const [userId, setUserId] = useState([])
   const [channelMembers, setChannelMembers] = useState([])
   const [isAddNewMember, setIsAddNewMember] = useState(false)
   const { id } = selectedChannel
@@ -34,20 +35,18 @@ const ChannelDetails = ({ selectedChannel }) => {
     options
   )
 
-  const handleNewMembers = () => {
-    setIsAddNewMember(true)
-  }
+  const handleSubmit = e => {
+    e.preventDefault()
 
-  const handleAddMember = userID => {
     const body = {
       id: channelInfo.id,
-      member_id: userID,
+      member_id: userId[0],
     }
     axios.post('http://206.189.91.54/api/v1/channel/add_member', body, {
       params,
     })
 
-    setIsAddNewMember(false)
+    setUserId('')
   }
 
   useEffect(() => {
@@ -81,27 +80,40 @@ const ChannelDetails = ({ selectedChannel }) => {
       <Text sx={{ marginBottom: 20 }}>
         Date Created: {date !== 'Invalid Date' && date}
       </Text>
+      <form onSubmit={e => handleSubmit(e)}>
+        <MultiSelect
+          sx={{ marginBottom: 20 }}
+          limit={20}
+          label="Add Members"
+          value={userId}
+          onChange={setUserId}
+          maxDropdownHeight={150}
+          maxSelectedValues={1}
+          searchable
+          clearable
+          data={data.map(user => {
+            const userObj = {
+              value: user.id,
+              label: user.email,
+            }
 
-      <MultiSelect
-        sx={{ marginBottom: 175 }}
-        limit={20}
-        label="Add Members"
-        maxDropdownHeight={150}
-        maxSelectedValues={1}
-        searchable
-        clearable
-        data={data.map(user => {
-          const userObj = {
-            value: user.id,
-            label: user.email,
-          }
-
-          return userObj
-        })}
-      />
-      <Group position='right'>
-        <Button>Add Member</Button>
-      </Group>
+            return userObj
+          })}
+        />
+        <Text>Members:</Text>
+        <div style={{marginBottom: 100}} className='members-container'>
+          {channelMembers.length === 0 ? (
+            <div>Loading ...</div>
+          ) : (
+            channelMembers.map(member => (
+              <Text key={member.id}>{member.uid}</Text>
+            ))
+          )}
+        </div>
+        <Group position="right">
+          <Button type="submit">Add Member</Button>
+        </Group>
+      </form>
     </div>
   )
 }
