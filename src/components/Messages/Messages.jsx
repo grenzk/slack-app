@@ -11,6 +11,7 @@ const Messages = ({
   isNewMessage,
   setIsNewMessage,
   setIsModalOn,
+  setIsChannelInfo,
   setSelectedChannel,
   selectedChannel,
 }) => {
@@ -37,6 +38,7 @@ const Messages = ({
               isNewMessage={isNewMessage}
               setIsNewMessage={setIsNewMessage}
               selectedUser={selectedUser}
+              setIsChannelInfo={setIsChannelInfo}
               selectedChannel={selectedChannel}
               setIsModalOn={setIsModalOn}
             />

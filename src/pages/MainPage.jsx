@@ -7,17 +7,23 @@ import TopHeader from '../components/MainPage/TopHeader'
 import Messages from '../components/Messages/Messages'
 import CreateChannelForm from '../components/Modal/CreateChannelForm'
 import Title from '../components/Messages/Title'
+import ChannelDetails from '../components/Modal/ChannelDetails'
 
 const MainPage = () => {
   const [selectedChannel, setSelectedChannel] = useState({})
   const [isModalOn, setIsModalOn] = useState(false)
   const [isNewMessage, setIsNewMessage] = useState(false)
+  const [isChannelInfo, setIsChannelInfo] = useState(false)
   const {
     user: { isLoggedIn },
   } = useContext(UserContext)
 
   if (!isLoggedIn) {
     return <Navigate to="/LoginPage" />
+  }
+
+  const changeModalName = (channelInfo) => {
+    console.log(channelInfo)
   }
 
   return (
@@ -32,6 +38,7 @@ const MainPage = () => {
               isNewMessage={isNewMessage}
               setIsNewMessage={setIsNewMessage}
               setIsModalOn={setIsModalOn}
+              setIsChannelInfo={setIsChannelInfo}
               selectedChannel={selectedChannel}
               setSelectedChannel={setSelectedChannel}
             />
@@ -57,7 +64,11 @@ const MainPage = () => {
         onClose={() => setIsModalOn(false)}
         size="sm"
       >
-        <CreateChannelForm opened={isModalOn} />
+        {isChannelInfo ? (
+          <ChannelDetails selectedChannel={selectedChannel} changeModalName={changeModalName} opened={isModalOn} />
+        ) : (
+          <CreateChannelForm opened={isModalOn} />
+        )}
       </Modal>
     </div>
   )

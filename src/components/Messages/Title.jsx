@@ -1,6 +1,7 @@
 import React from 'react'
-import { Header, Container } from '@mantine/core'
+import { Header, Container, ActionIcon } from '@mantine/core'
 import { useStyles } from '../../assets/js/headerStyle'
+import { InfoCircle } from 'tabler-icons-react'
 import UserSelection from './UserSelection'
 import useGet from '../../api/useGet'
 
@@ -8,6 +9,7 @@ const Title = ({
   isNewMessage,
   setIsNewMessage,
   selectedUser,
+  setIsChannelInfo,
   selectedChannel,
   setIsModalOn,
 }) => {
@@ -16,6 +18,7 @@ const Title = ({
 
   const handleChannelInfo = () => {
     setIsModalOn(true)
+    setIsChannelInfo(true)
   }
 
   return (
@@ -35,6 +38,11 @@ const Title = ({
               ? selectedChannel.name
               : 'Start Messaging'}
           </h1>
+          {selectedChannel && (
+            <ActionIcon className="info-icon" radius='sm'>
+              <InfoCircle color='gray' onClick={handleChannelInfo} />
+            </ActionIcon>
+          )}
         </Container>
       )}
     </Header>
