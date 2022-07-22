@@ -15,32 +15,28 @@ const Channels = ({ setIsModalOn }) => {
 
   return (
     <div>
-      <h3 className='dm'>Channels</h3>
-      <div
-        onClick={handleNewChannel}
-        className={cx(classes.link, {
-          [classes.linkActive]: 'Create a channel' === active,
-        })}
-      >
+      <h3 className="dm">Channels</h3>
+      <div onClick={handleNewChannel} className={classes.link}>
         <Plus className={classes.linkIcon} />
         <span>Create a channel</span>
       </div>
 
-      <ul>
-        {status === 'idle' || status === 'fetching' ? (
-          <li>Loading Channels</li>
-        ) : (
-          data?.map(channel => {
-            return (
-              <Link key={channel.id} to={`/MainPage/${channel.id}`}>
-                <li>
-                  <Hash /> {channel.name}
-                </li>
-              </Link>
-            )
-          })
-        )}
-      </ul>
+      {status === 'idle' || status === 'fetching' ? (
+        <span className={classes.link}>Loading Channels</span>
+      ) : (
+        data?.map(channel => {
+          return (
+            <Link
+              key={channel.id}
+              to={`/MainPage/${channel.id}`}
+              className={classes.link}
+            >
+              <Hash className={classes.linkIcon} />
+              <span>{channel.name}</span>
+            </Link>
+          )
+        })
+      )}
     </div>
   )
 }
