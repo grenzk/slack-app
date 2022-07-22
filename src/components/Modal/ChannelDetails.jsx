@@ -9,7 +9,6 @@ const ChannelDetails = ({ selectedChannel }) => {
   const [channelInfo, setChannelInfo] = useState({})
   const [userId, setUserId] = useState([])
   const [channelMembers, setChannelMembers] = useState([])
-  const [isAddNewMember, setIsAddNewMember] = useState(false)
   const { id } = selectedChannel
 
   const {
@@ -101,7 +100,7 @@ const ChannelDetails = ({ selectedChannel }) => {
           })}
         />
         <Text>Members:</Text>
-        <div style={{marginBottom: 100}} className='members-container'>
+        <div style={{ marginBottom: 100 }} className="members-container">
           {channelMembers.length === 0 ? (
             <div>Loading ...</div>
           ) : (
