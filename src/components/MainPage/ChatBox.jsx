@@ -1,10 +1,11 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState, useRef } from 'react'
 import axios from 'axios'
 import { UserContext } from '../../contexts/User'
 import { Box } from '@mantine/core'
 import Sender from '../Messages/Sender'
 
 const ChatBox = ({ selectedUser, selectedChannel }) => {
+  const targetElement = useRef(null)
   const [messagesData, setMessagesData] = useState([])
   const {
     user: { expiry, uid, accessToken, client },
@@ -51,6 +52,10 @@ const ChatBox = ({ selectedUser, selectedChannel }) => {
   }
 
   useEffect(() => {
+    targetElement.current.scrollIntoView({ behavior: 'smooth' })
+  }, [newMessages])
+
+  useEffect(() => {
     const params = {
       expiry: expiry,
       uid: uid,
@@ -76,6 +81,7 @@ const ChatBox = ({ selectedUser, selectedChannel }) => {
           newMessages.map(message => (
             <Sender key={message.date} message={message} />
           ))}
+        <div ref={targetElement}></div>
       </Box>
     </div>
   )
