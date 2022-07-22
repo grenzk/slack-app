@@ -1,13 +1,11 @@
-import React, { useState, useContext } from 'react'
-import { Navbar, Group, Button, ActionIcon } from '@mantine/core'
-import { Hash, Logout, MessageDots } from 'tabler-icons-react'
+import React, { useContext } from 'react'
+import { Navbar, Group, ActionIcon } from '@mantine/core'
+import { Logout, MessageDots } from 'tabler-icons-react'
 import useStyles from '../../assets/js/mantineStyles'
 import { UserContext } from '../../contexts/User'
 
 import Channels from '../Sidebar/Channels'
 import DirectMessages from '../Sidebar/DirectMessages'
-
-const data = [{ link: '', label: 'general', icon: Hash }]
 
 const Sidebar = ({ setIsModalOn, setIsChannelInfo, setIsNewMessage }) => {
   const { handleLogout } = useContext(UserContext)
@@ -37,7 +35,10 @@ const Sidebar = ({ setIsModalOn, setIsChannelInfo, setIsNewMessage }) => {
               <MessageDots />
             </ActionIcon>
           </Group>
-          <Channels setIsModalOn={setIsModalOn} setIsChannelInfo={setIsChannelInfo} />
+          <Channels
+            setIsModalOn={setIsModalOn}
+            setIsChannelInfo={setIsChannelInfo}
+          />
           <DirectMessages />
         </Navbar.Section>
 
