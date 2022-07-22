@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { At, Lock } from 'tabler-icons-react'
+import * as FontAwesome from 'react-icons/fa'
 import {
   TextInput,
   Text,
@@ -9,6 +10,7 @@ import {
   Group,
   Box,
   Anchor,
+  Title,
 } from '@mantine/core'
 import usePost from '../../api/usePost'
 
@@ -52,6 +54,19 @@ const SignUpForm = () => {
   return (
     <div>
       <Box className="login-form-container" mx="auto">
+        <Title
+          order={2}
+          style={{
+            fontFamily: 'Poppins, sans-serif',
+            marginBottom: 40,
+            display: 'flex',
+            alignItems: 'center',
+            columnGap: 5,
+          }}
+        >
+          <FontAwesome.FaSlack />
+          Slack
+        </Title>
         <form onSubmit={handleSubmit}>
           <TextInput
             required

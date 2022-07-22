@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate, Navigate } from 'react-router-dom'
 import { At, Lock } from 'tabler-icons-react'
+import * as FontAwesome from 'react-icons/fa'
 import {
   TextInput,
   Text,
@@ -8,6 +9,7 @@ import {
   Button,
   Group,
   Box,
+  Title,
   Anchor,
 } from '@mantine/core'
 import { UserContext } from '../../contexts/User'
@@ -65,6 +67,20 @@ const LoginForm = () => {
   return (
     <div>
       <Box className="login-form-container" mx="auto">
+        <Title
+          order={2}
+          style={{
+            fontFamily: 'Poppins, sans-serif',
+            marginBottom: 40,
+            display: 'flex',
+            alignItems: 'center',
+            columnGap: 5,
+          }}
+        >
+          <FontAwesome.FaSlack />
+          Slack
+        </Title>
+
         <form onSubmit={handleSubmit}>
           <TextInput
             required
