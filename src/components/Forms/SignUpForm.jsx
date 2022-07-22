@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 import { At, Lock } from 'tabler-icons-react'
 import * as FontAwesome from 'react-icons/fa'
 import {
@@ -26,17 +25,15 @@ const SignUpForm = () => {
     userSignUpInfo
   )
 
-  let navigate = useNavigate()
-
   useEffect(() => {
     if (res?.data?.status === 'success') {
-      navigate('/LoginPage')
+      window.location.assign('/LoginPage')
     }
     setErrorMessage(errors.full_messages)
-  }, [res, errors, navigate])
+  }, [res, errors])
 
   const handleClick = () => {
-    navigate('/LoginPage')
+    window.location.assign('/LoginPage')
   }
 
   const handleChange = e => {

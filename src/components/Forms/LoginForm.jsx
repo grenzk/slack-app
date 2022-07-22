@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { useNavigate, Navigate } from 'react-router-dom'
+import { Navigate } from 'react-router-dom'
 import { At, Lock } from 'tabler-icons-react'
 import * as FontAwesome from 'react-icons/fa'
 import {
@@ -26,7 +26,6 @@ const LoginForm = () => {
     userLoginInfo
   )
   const { user, handleLogin } = useContext(UserContext)
-  const navigate = useNavigate()
 
   useEffect(() => {
     if (res?.data && res?.headers) {
@@ -45,7 +44,7 @@ const LoginForm = () => {
   }, [res, errors, handleLogin])
 
   const handleClick = () => {
-    navigate('/SignUpPage')
+    window.location.assign('/SignUpPage')
   }
 
   const handleChange = e => {
