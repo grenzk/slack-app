@@ -15,7 +15,7 @@ const SignUpForm = () => {
   const [userSignUpInfo, setUserSignUpInfo] = useState({
     email: '',
     password: '',
-    confirmPassword: '',
+    password_confirmation: '',
   })
   const [errorMessage, setErrorMessage] = useState([])
   const { res, errors, handleSubmit } = usePost(
@@ -73,10 +73,10 @@ const SignUpForm = () => {
             required
             icon={<Lock size={16} />}
             mt="sm"
-            id="confirmPassword"
+            id="password_confirmation"
             label="Confirm password"
             placeholder="Confirm password"
-            value={userSignUpInfo.confirmPassword}
+            value={userSignUpInfo.password_confirmation}
             onChange={handleChange}
           />
 
