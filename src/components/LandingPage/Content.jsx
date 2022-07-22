@@ -1,13 +1,10 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
 import { Button } from '@mantine/core'
 import mySvg from '../../assets/img/women-web-developer-with-laptop.svg'
 
 const Content = () => {
-  let navigate = useNavigate()
-
   const routeChange = () => {
-    navigate('/SignUpPage')
+    window.location.assign('/SignUpPage')
   }
 
   return (
