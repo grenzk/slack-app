@@ -11,8 +11,7 @@ const data = [{ link: '', label: 'general', icon: Hash }]
 
 const Sidebar = ({ setIsModalOn, setIsNewMessage }) => {
   const { handleLogout } = useContext(UserContext)
-  const { classes, cx } = useStyles()
-  const [active, setActive] = useState('Billing')
+  const { classes } = useStyles()
 
   const handleClick = () => {
     handleLogout()
@@ -21,23 +20,6 @@ const Sidebar = ({ setIsModalOn, setIsNewMessage }) => {
   const handleNewMessage = () => {
     setIsNewMessage(prevState => !prevState)
   }
-
-  const links = data.map(item => (
-    <a
-      className={cx(classes.link, {
-        [classes.linkActive]: item.label === active,
-      })}
-      href={item.link}
-      key={item.label}
-      onClick={event => {
-        event.preventDefault()
-        setActive(item.label)
-      }}
-    >
-      <item.icon className={classes.linkIcon} />
-      <span>{item.label}</span>
-    </a>
-  ))
 
   return (
     <div>

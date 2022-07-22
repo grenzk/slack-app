@@ -1,10 +1,13 @@
 import React, { useContext } from 'react'
+import { Group } from '@mantine/core'
 import { Link, useNavigate } from 'react-router-dom'
-import { X } from 'tabler-icons-react'
+import useStyles from '../../assets/js/mantineStyles'
+import { UserMinus } from 'tabler-icons-react'
 
 import { UserContext } from '../../contexts/User'
 
 const DirectMessages = () => {
+  const { classes } = useStyles()
   const {
     user: { receivers },
     handleUpdateReceivers,
@@ -24,14 +27,19 @@ const DirectMessages = () => {
   return (
     <div>
       <h3 className="dm">Direct Messages</h3>
-      <ul>
-        {receivers?.map(user => (
-          <Link to={`/MainPage/${user.id}`} key={user.id}>
-            {user.email}
-            <X className="close" onClick={e => handleClose(e, user.id)} />
-          </Link>
-        ))}
-      </ul>
+      {receivers?.map(user => (
+        <Link
+          className={classes.link}
+          to={`/MainPage/${user.id}`}
+          key={user.id}
+        >
+          <UserMinus
+            className={classes.linkIcon}
+            onClick={e => handleClose(e, user.id)}
+          />
+          <span>{user.email}</span>
+        </Link>
+      ))}
     </div>
   )
 }

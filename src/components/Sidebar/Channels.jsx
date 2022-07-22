@@ -6,8 +6,7 @@ import useGet from '../../api/useGet'
 
 const Channels = ({ setIsModalOn }) => {
   const { status, data } = useGet('http://206.189.91.54/api/v1/channels')
-  const { classes, cx } = useStyles()
-  const [active, setActive] = useState('Billing')
+  const { classes } = useStyles()
 
   const handleNewChannel = () => {
     setIsModalOn(true)
