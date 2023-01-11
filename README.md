@@ -20,5 +20,5 @@ password: `password`
 
 ## Live Demo
 
-Vercel (https://slack-app-rho.vercel.app)
+Vercel (https://slack-app-rho.vercel.app) <br>
 Enabling mixed content in your browser (https://experienceleague.adobe.com/docs/target/using/experiences/vec/troubleshoot-composer/mixed-content.html?lang=en)
